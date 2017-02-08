@@ -28,7 +28,9 @@ public class CreateUser extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.print(j);
 		}
-		catch(Exception e){}
+		catch(Exception e){
+			System.out.println("erreur Servlet CreateUser");
+		}
 	}
 
 }
