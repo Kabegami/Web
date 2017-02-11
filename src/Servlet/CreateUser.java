@@ -28,19 +28,11 @@ public class CreateUser extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		/* on verifie si l'utilisateur existe */
-		userTools.userExists(login);
-		/* Ajoute utilisateur a la BD */
-		Connection c = Database.getMySQLConnection();
-		Statement st = c.createStatement();
-		String q = "Insert into users values(null,\"+login+\",\"+password+\",\"+nom+prenom\"";
-		st.executeUpdate(q);
-		st.close();
-		c.close();
-		JSONObject j = Services.user.createUser(prenom,nom,login,password);
+		JSONObject j = new JSONObject();
+		j = Services.user.createUser(prenom,nom,login,password);
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
-		out.print(j);
+		out.println(j);
 		}
 		catch(Exception e){
 			System.out.println("erreur Servlet CreateUser");

@@ -26,10 +26,10 @@ public class Database {
 	}
 	
 	public static Connection getMySQLConnection() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		Class.forName("con.mysql.jdbc.Driver").newInstance ();
+		Class.forName("com.mysql.jdbc.Driver");
 		if (DBStatic.mysql_pooling==false) { 
-		return(DriverManager.getConnection("jdbc:mysql://" + DBStatic.mysql_host + "/" + 
-		DBStatic.mysql_db, DBStatic.mysql_username, DBStatic.mysql_password));
+			System.out.println("Avant DriverManager.getConnection");
+			return(DriverManager.getConnection("jdbc:mysql://" + DBStatic.mysql_host + "/" + DBStatic.mysql_db, DBStatic.mysql_username, DBStatic.mysql_password));
 		} 
 		else { 
 			if (database==null) { 
