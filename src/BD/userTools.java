@@ -3,9 +3,10 @@ package BD;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.mysql.jdbc.PreparedStatement;
-
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 
 
 public class userTools {
