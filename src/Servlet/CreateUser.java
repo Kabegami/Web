@@ -22,7 +22,7 @@ public class CreateUser extends HttpServlet {
 		super();
 	}
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try{
 		String prenom = request.getParameter("prenom");
 		String nom = request.getParameter("nom");
@@ -35,7 +35,10 @@ public class CreateUser extends HttpServlet {
 		out.println(j);
 		}
 		catch(Exception e){
-			System.out.println("erreur Servlet CreateUser");
+			response.setContentType("text/plain");
+			PrintWriter out = response.getWriter();
+			out.println("erreur Servlet CreateUser");
+			out.println(e);
 		}
 	}
 

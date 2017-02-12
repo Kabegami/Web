@@ -26,8 +26,7 @@ public class userTools {
 			return exists;	
 		}	
 		catch(Exception e){
-			System.out.println(e);
-			throw new BDException("can't check user");
+			throw new BDException("can't check user , exception = " + e);
 		}
 	}
 }
