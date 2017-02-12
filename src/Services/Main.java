@@ -12,8 +12,8 @@ public class Main {
 	public static void main(String[] args)   {
 		try{
 		user u = new user();
-		JSONObject j = u.createUser("toto", "raoul", "lolol", "123");
-		
+		//JSONObject j = u.createUser("toto", "raoul", "lolol", "123");
+		JSONObject j = u.login("lolol","123");
 		System.out.println(j);}
 		catch(Exception e){
 			System.out.println(e);
