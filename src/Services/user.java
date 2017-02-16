@@ -17,6 +17,13 @@ import BD.userTools;
 public class user {
 	
 	public static JSONObject createUser(String prenom, String nom, String login, String password) throws JSONException, BDException, SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
+		if (prenom == null || nom == null || login == null || password == null){
+			JSONObject j = new JSONObject();
+			j.put("state", "error");
+			j.put("erreur","un des chanmp n'est pas remplis");
+			return j;
+		}
+		
 		/* on verifie si l'utilisateur existe */
 		if (!userTools.userExists(login)){
 			Connection c = Database.getMySQLConnection();
@@ -39,12 +46,18 @@ public class user {
 	}
 		else {
 			JSONObject j = new JSONObject();
-			j.put("state","problem");
+			j.put("state","error");
 			j.put("erreur", "l'utilisateur existe deja");
 			return j;
 		}
 		}
 	public static JSONObject login(String login, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, JSONException, BDException{
+		if (login == null || password == null){
+			JSONObject j = new JSONObject();
+			j.put("state", "error");
+			j.put("erreur", "un des parametres est null");
+			return j;
+		}
 		boolean exists;
 		Connection c = Database.getMySQLConnection();
 		String query = "SELECT id from users where password = ? and login = ?;";
@@ -73,6 +86,9 @@ public class user {
 				sessionsTools.updateSession(id);
 				j.put("state", "ok");
 				j.put("session deja existante", "temps_connection mis a jour");
+				j.put("id",id);
+				j.put("login", login);
+				j.put("key",key);
 				
 			}
 			
